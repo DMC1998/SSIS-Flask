@@ -1,0 +1,24 @@
+{%- extends "layouts/master_layout.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+   utils module here to automatically render Flask's flashed messages in a
+   bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block styles %}
+{{super()}}
+
+<button onclick="window.location.href='/viewcolleges';">Cancel</button>
+<div class="center" style="padding-left: 500px; padding-right: 500px">
+    <h1>Edit College</h1>
+              <form class="form" method="post" role="form">
+              {{ form.hidden_tag() }}
+              {{ wtf.form_errors(form, hiddens="only") }}
+              {{ wtf.form_field(form.codec) }}
+              {{ wtf.form_field(form.namec) }}
+
+              <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
+            </form>
+            </div>
+
+{%- endblock %}
