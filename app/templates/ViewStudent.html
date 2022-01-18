@@ -1,0 +1,75 @@
+{%- extends "layouts/master_layout.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+   utils module here to automatically render Flask's flashed messages in a
+   bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+{{super()}}
+
+<style>
+body {
+background-repeat: :norepeat;
+background=atatched: fixed;
+background-size: cover;
+opacity: 0.8;
+background-image:url({{url_for('static',filename='image/msuiitccs.png')}})
+}
+.control-label {display: none;}
+</style>
+
+<h1 class="bigletter">SSIS</h1>
+<h1> </h1>
+<div class="center" style="padding-left: 100px; padding-right: 100px">
+<button onclick="window.location.href='/viewstudents/addstudent';">Add Student</button>
+<button onclick="window.location.href='/';">To Index</button>
+
+<div class="table-responsive">
+   <table>
+
+      <tr class="notfirst">
+         <th>Student Image</th>
+         <th>Student ID</th>
+         <th>First Name</th>
+         <th>Last Name</th>
+         <th>Course</th>
+         <th>Year</th>
+         <th>Gender</th>
+         <th></th>
+      </tr>
+
+   <tbody>
+   {% for students in data %}
+   <tr>
+      <td><img src="{{students[6]}}" style="width:100px;height:100px;"></td>
+      <td>{{students[0]}}</td>
+      <td>{{students[1]}}</td>
+      <td>{{students[2]}}</td>
+      <td>{{students[3]}}</td>
+      <td>{{students[4]}}</td>
+      <td>{{students[5]}}</td>
+      <td>
+         <span><div class="btn btn-primary btn-edit" data-id="{{students[0]}}" ><ion-icon name="create-outline"></ion-icon> </div></span>
+         <div class="btn btn-primary btn-delete" data-id="{{students[0]}}"><ion-icon name="trash-outline"></ion-icon></div>
+      </td>
+   </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+
+</div>
+</div>
+
+{%- endblock %}
+{% block scripts%}
+{{super()}}
+<script>
+   var url = "{{ url_for('.deletestudent') }}";
+   var urledit = "{{ url_for('.editstudent') }}"
+
+</script>
+<script src="{{ url_for('static',filename='js/index.js')}}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+{% endblock %}
