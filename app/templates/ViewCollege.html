@@ -1,0 +1,65 @@
+{%- extends "layouts/master_layout.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+   utils module here to automatically render Flask's flashed messages in a
+   bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+{{super()}}
+
+<style>
+body {
+background-repeat: :norepeat;
+background=atatched: fixed;
+background-size: cover;
+opacity: 0.8;
+background-image:url({{url_for('static',filename='image/msuiitccs.png')}})
+}
+.control-label {display: none;}
+</style>
+
+<h1 class="bigletter">SSIS</h1>
+<h1> </h1>
+
+<div class="center" style="padding-left: 400px; padding-right: 400px">
+   <button onclick="window.location.href='/viewcolleges/addcollege';">Add College</button>
+<button onclick="window.location.href='/';">To Index</button>
+<div class="table-responsive">
+   <table>
+
+      <tr class="notfirst">
+         <th>College Code</th>
+         <th>College Name</th>
+         <th></th>
+      </tr>
+
+   <tbody>
+   {% for college in data %}
+   <tr>
+      <td>{{college[0]}}</td>
+      <td>{{college[1]}}</td>
+      <td>
+         <span><div class="btn btn-primary btn-edit" data-id="{{college[0]}}"><ion-icon name="create-outline"></ion-icon> </div></span>
+         <div class="btn btn-primary btn-delete" data-id="{{college[0]}}"><ion-icon name="trash-outline"></ion-icon></div>
+      </td>
+   </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+
+
+</div>
+</div>
+
+{%- endblock %}
+{% block scripts%}
+{{super()}}
+<script>
+   var url = "{{ url_for('.deletecollege') }}";
+   var urledit = "{{ url_for('.editcollege') }}"
+</script>
+<script src="{{ url_for('static',filename='js/index.js')}}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+{% endblock %}
