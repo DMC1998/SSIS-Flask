@@ -3,7 +3,7 @@ from flask import render_template, redirect, request, jsonify
 from app.functions import forms
 from . import students_bp, course_bp, college_bp
 import app.models as models
-from app.functions.forms import StudentForm, CourseForm, CollegeForm
+from app.functions.forms import StudentForm, CourseForm, CollegeForm, SearchForm
 from app import mysql
 import cloudinary
 import cloudinary.api
@@ -164,7 +164,22 @@ def strindexcourse():
     if request.method == 'GET':
         college = models.College.allcollege()
         print(college)
-        return render_template('ViewCollege.html', data=college)
+        form = SearchForm(request.form)
+        print(form, "SearchForm")
+        return render_template('ViewCollege.html', data=college, form=form)
+    if request.method == 'POST':
+        form = SearchForm(request.form["searchbar"])
+        print((form, "Searchbar"))
+        college = models.College.allcollege()
+        print(college, "College Search")
+        final = []
+        print(final, "Final")
+        for data in college:
+            for row in data:
+                if form.searchbar.data.lower() in row.lower():
+                    final.append(data)
+                    break
+        return render_template('ViewCollege.html', data=college, form=form)
 
 @college_bp.route('/viewcolleges/addcollege', methods=['POST', 'GET'])
 def addcourse():
@@ -186,11 +201,10 @@ def editcollege():
         codec = request.args.get("id")
         college = models.College(codec=id)
         collegeinfo = college.searchcollege(codec)
-        form = CollegeForm(collegeinfo[0][0], collegeinfo[0][1],)
+        form = CollegeForm(collegeinfo[0][0],collegeinfo[0][1])
         oldcodec = collegeinfo[0][0]
         print(collegeinfo[0][1], "collegeeditform")
         print(collegeinfo, "collegeinfo")
-
     else:
         form = CollegeForm()
 

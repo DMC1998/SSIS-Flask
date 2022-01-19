@@ -4,7 +4,7 @@ body {
 
 
 .sub-header {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #000000;
 }
 
@@ -29,9 +29,20 @@ tr:hover {background-color: yellow;}
 .bigletter{
 color: black;
 text-align: center;
-padding-left: 600px;
-padding-right: 600px;
+padding-left:100px;
+padding-right:100px;
+border: 15px solid lightgrey;
+width: 75px;
 background-color: white;
 opacity: 1;
 
+}
+
+.box{
+  background-color: lightgrey;
+  width: 600px;
+  border: 15px solid green;
+  padding: 50px;
+  margin-top: 75px;
+  margin-left: 475px;
 }

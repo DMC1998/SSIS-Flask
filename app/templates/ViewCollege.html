@@ -19,13 +19,23 @@ background-image:url({{url_for('static',filename='image/msuiitccs.png')}})
 .control-label {display: none;}
 </style>
 
-<h1 class="bigletter">SSIS</h1>
+<h1 class="bigletter" style="margin-left:400px; margin-right:400px; padding-left: 100px; padding-right: 100px">SSIS</h1>
 <h1> </h1>
 
 <div class="center" style="padding-left: 400px; padding-right: 400px">
    <button onclick="window.location.href='/viewcolleges/addcollege';">Add College</button>
 <button onclick="window.location.href='/';">To Index</button>
-<div class="table-responsive">
+
+   <form class="form" method="post" role="form" style="padding-right:20px;">
+      {{ form.hidden_tag() }}
+      <span style="width:70% !important;">{{ wtf.form_errors(form, hiddens="only") }}</span>
+      <h3 style="margin-left:0px; margin-right:530px; padding-left: 10px; padding-right: 10px;
+       border: 15px solid lightgrey; text-align: left; background-color: white;">Search</h3>
+      <div>{{ wtf.form_field(form.searchbar) }}</div>
+      <div><input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit"></div>
+   </form>
+   <label> </label>
+<div class="table-responsive" id="content">
    <table>
 
       <tr class="notfirst">

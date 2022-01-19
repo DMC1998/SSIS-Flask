@@ -60,3 +60,14 @@ class CollegeForm(FlaskForm):
             self.oldcodec.default = oldcodec
             self.namec.default = namec
             self.process()
+
+class SearchForm(FlaskForm):
+    searchbar = StringField("search", [])
+    submit = SubmitField("Submit")
+
+    def __init__(self, searchbar = None):
+        super().__init__()
+        if searchbar:
+            self.process()
+            self.searchbar.default = searchbar
+            self.process()

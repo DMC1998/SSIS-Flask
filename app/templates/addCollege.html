@@ -8,16 +8,53 @@
 {% block styles %}
 {{super()}}
 
-<button onclick="window.location.href='/viewcolleges';">Cancel</button>
-<div class="center" style="padding-left: 500px; padding-right: 500px">
+<style>
+body {
+background-repeat: :norepeat;
+background=atatched: fixed;
+background-size: cover;
+opacity: 0.8;
+background-image:url({{url_for('static',filename='image/msuiitentrance.jpg')}})
+}
+.box{
+  background-color: lightgrey;
+  width: 600px;
+  border: 15px solid green;
+  padding: 50px;
+  margin-top: 75px;
+  font-size: 14px;
+  margin-left: 475px;
+}
+
+.button {
+  background-color: #fff;
+  border:color; #ccc;
+  border: none;
+  color: #333;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.control-label {display: none;}
+</style>
+
+<div class="box" style="padding:50px;">
     <h1>Add College</h1>
               <form class="form" method="post" role="form">
               {{ form.hidden_tag() }}
               {{ wtf.form_errors(form, hiddens="only") }}
+                  <h4>College Code</h4>
               {{ wtf.form_field(form.codec) }}
+                  <h4>College Name</h4>
               {{ wtf.form_field(form.namec) }}
               <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
             </form>
+                <button onclick="window.location.href='/viewcolleges';"class="button">Cancel</button>
             </div>
 
 {%- endblock %}

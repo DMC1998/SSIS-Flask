@@ -8,22 +8,63 @@
 {% block styles %}
 {{super()}}
 
-<button onclick="window.location.href='/viewstudents';">Cancel</button>
-<div class="center" style="padding-left: 500px; padding-right: 500px">
+<style>
+body {
+background-repeat: :norepeat;
+background=atatched: fixed;
+background-size: cover;
+opacity: 0.8;
+background-image:url({{url_for('static',filename='image/msuiitentrance.jpg')}})
+}
+.box{
+  background-color: lightgrey;
+  width: 600px;
+  border: 15px solid green;
+  padding: 50px;
+  margin-top: 75px;
+  margin-left: 475px;
+}
+
+.button {
+  background-color: #fff;
+  border:color; #ccc;
+  border: none;
+  color: #333;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.control-label {display: none;}
+</style>
+
+<div class="box" style="padding: 50px;">
     <h1>Edit Student</h1>
               <form class="form" method="post" enctype=multipart/form-data role="form">
               {{ form.hidden_tag() }}
               {{ wtf.form_errors(form, hiddens="only") }}
+              <h4>Student ID</h4>
               {{ wtf.form_field(form.id) }}
+                  <h4>First Name</h4>
               {{ wtf.form_field(form.first) }}
+                  <h4>Last Name</h4>
               {{ wtf.form_field(form.last) }}
+                  <h4>Course</h4>
               {{ wtf.form_field(form.course) }}
+                  <h4>Year Level</h4>
               {{ wtf.form_field(form.year) }}
+                  <h4>Gender</h4>
               {{ wtf.form_field(form.gender) }}
+                  <h4>Upload Image</h4>
               {{ wtf.form_field(form.upload) }}
 
               <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
             </form>
+                <button onclick="window.location.href='/viewstudents';" class="button">Cancel</button>
             </div>
 
 {%- endblock %}

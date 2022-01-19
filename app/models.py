@@ -182,6 +182,7 @@ class College(object):
         cursor = mysql.connection.cursor()
 
         sql = "SELECT * from college"
+        print(sql, "ALL COLLEGE SQL")
         cursor.execute(sql)
         result = cursor.fetchall()
         return result
@@ -207,9 +208,10 @@ class College(object):
             print(e)
             return False
 
-    def searchcollege(cls, codec):
+    def search(cls, id):
         cursor = mysql.connection.cursor()
-        sql = f"SELECT * from college where college_code='{codec}'"
+        sql = f"SELECT * from college where college_code='{id}'"
+        print(sql, "SEARCH COLLEGE")
         cursor.execute(sql)
         codecs = cursor.fetchall()
         return codecs
