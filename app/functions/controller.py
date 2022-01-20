@@ -25,7 +25,19 @@ def strindex():
     if request.method == 'GET':
         students = models.Students.allstudent()
         print(students, "allstudent")
-        return render_template('ViewStudent.html', data=students, geturl='.strindex')
+        form = SearchForm(request.form)
+        return render_template('ViewStudent.html', data=students, form=form, geturl='.strindex')
+    if request.method == 'POST':
+        form = SearchForm(request.form["searchbar"])
+        print((form, "Searchbar"))
+        students = models.Students.allstudent()
+        final = []
+        for data in students:
+            for row in data:
+                if form.searchbar.data.lower() in row.lower():
+                    final.append(data)
+                    break
+        return render_template('ViewStudent.html', data=final, form=form)
 
 @students_bp.route('/viewstudents/addstudent', methods=['POST', 'GET'])
 def addstudent():
@@ -106,7 +118,19 @@ def strindexcourse():
     if request.method == 'GET':
         course = models.Courses.allcourse()
         print(course)
-        return render_template('ViewCourses.html', data=course)
+        form = SearchForm(request.form)
+        return render_template('ViewCourses.html', data=course, form=form)
+    if request.method == 'POST':
+        form = SearchForm(request.form["searchbar"])
+        print((form, "Searchbar"))
+        course = models.Courses.allcourse()
+        final = []
+        for data in course:
+            for row in data:
+                if form.searchbar.data.lower() in row.lower():
+                    final.append(data)
+                    break
+        return render_template('ViewCourses.html', data=final, form=form)
 
 @course_bp.route('/viewcourses/addcourse', methods=['POST', 'GET'])
 def addcourse():
@@ -160,7 +184,7 @@ def deletecourse():
         return jsonify(success=False, message="Failed")
 
 @college_bp.route('/viewcolleges', methods=['POST', 'GET'])
-def strindexcourse():
+def strindexcollege():
     if request.method == 'GET':
         college = models.College.allcollege()
         print(college)
@@ -179,7 +203,7 @@ def strindexcourse():
                 if form.searchbar.data.lower() in row.lower():
                     final.append(data)
                     break
-        return render_template('ViewCollege.html', data=college, form=form)
+        return render_template('ViewCollege.html', data=final, form=form)
 
 @college_bp.route('/viewcolleges/addcollege', methods=['POST', 'GET'])
 def addcourse():

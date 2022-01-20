@@ -19,11 +19,24 @@ background-image:url({{url_for('static',filename='image/msuiitccs.png')}})
 .control-label {display: none;}
 </style>
 
-<h1 class="bigletter" style="margin-left:100px; margin-right:100px;">SSIS</h1>
+<a href="/viewstudents"> <button style="borderline: None;"> <h4> Click here to View Students</h4></button> </a>
+<a href="/viewcourses"> <button style="borderline: None;"> <h4> Click here to View Courses</h4></button> </a>
+<a href="/viewcolleges"> <button style="borderline: None;"> <h4> Click here to View Colleges</h4></button> </a>
+
+<h1 class="bigletter" style="margin-left:650px; margin-right:300px; padding-left: 10px;padding-right: 90px;">SSIS</h1>
 <h1> </h1>
 <div class="center" style="padding-left: 100px; padding-right: 100px">
 <button onclick="window.location.href='/viewstudents/addstudent';">Add Student</button>
 <button onclick="window.location.href='/';">To Index</button>
+
+   <form class="form" method="post" role="form" style="padding-right:20px;">
+      {{ form.hidden_tag() }}
+      <span style="width:70% !important;">{{ wtf.form_errors(form, hiddens="only") }}</span>
+      <h3 style="margin-left:0px; margin-right:1115px; padding-left: 10px; padding-right: 10px;
+       border: 15px solid lightgrey; text-align: left; background-color: white;">Search</h3>
+      <div>{{ wtf.form_field(form.searchbar) }}</div>
+      <div><input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit"></div>
+   </form>
 
 <div class="table-responsive">
    <table>
