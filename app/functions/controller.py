@@ -109,7 +109,7 @@ def editstudent():
 def deletestudent():
     id = request.form['id']
     if models.Students.deletestudent(id):
-        return jsonify(success=True, message="Successfully deleted")
+        return jsonify(success=True, message="Student Successfully Deleted")
     else:
         return jsonify(success=False, message="Failed")
 
@@ -179,7 +179,7 @@ def deletecourse():
     id = request.form['id']
     print(id, "Delete ID")
     if models.Courses.deletecourse(id):
-        return jsonify(success=True, message="Successfully deleted")
+        return jsonify(success=True, message="Course Successfully Deleted")
     else:
         return jsonify(success=False, message="Failed")
 
@@ -247,6 +247,6 @@ def editcollege():
 def deletecollege():
     id = request.form['id']
     if models.College.deletecollege(id):
-        return jsonify(success=True, message="Successfully deleted")
+        return jsonify(success=True, message="College Successfully Deleted")
     else:
         return jsonify(success=False, message="Failed")
