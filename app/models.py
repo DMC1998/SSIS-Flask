@@ -170,6 +170,7 @@ class College(object):
         cursor = mysql.connection.cursor()
         print(self.codec)
         sql = f"UPDATE college SET college_code ='{self.codec}',college_name ='{self.namec}' WHERE college_code = '{str(self.oldcodec)}'"
+        print(sql)
         try:
             cursor.execute(sql)
         except Exception as e:
@@ -208,10 +209,10 @@ class College(object):
             print(e)
             return False
 
-    def search(cls, codecs):
+    def searchcollege(cls, codec):
         cursor = mysql.connection.cursor()
-        sql = f"SELECT * from college where college_code='{codecs}'"
+        sql = f"SELECT * from college where college_code='{codec}'"
         print(sql, "SEARCH COLLEGE")
         cursor.execute(sql)
-        codecs = cursor.fetchall()
-        return codecs
+        codec = cursor.fetchall()
+        return codec

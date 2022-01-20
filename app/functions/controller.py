@@ -70,7 +70,7 @@ def editstudent():
         id = request.args.get("id")
         students = models.Students(id=id)
         studentinfo = students.searchstudent(id)
-        form = StudentForm(studentinfo[0][0],studentinfo[0][0], studentinfo[0][1], studentinfo[0][2], studentinfo[0][3], studentinfo[0][4],)
+        form = StudentForm(studentinfo[0][0],studentinfo[0][1], studentinfo[0][2], studentinfo[0][3], studentinfo[0][4], studentinfo[0][5],)
         oldid = studentinfo[0][0]
 
         print(oldid, "oldid")
@@ -154,7 +154,7 @@ def editcourse():
         code = request.args.get("id")
         course = models.Courses(code=id)
         courseinfo = course.searchcourse(code)
-        form = CourseForm(courseinfo[0][0], courseinfo[0][0], courseinfo[0][1],)
+        form = CourseForm(courseinfo[0][0], courseinfo[0][1], courseinfo[0][2],)
         oldcode = courseinfo[0][0]
         for row in fetch_from_table('college', 'college_code'):
             college = str(row[0])
@@ -225,12 +225,13 @@ def editcollege():
         codec = request.args.get("id")
         college = models.College(codec=id)
         collegeinfo = college.searchcollege(codec)
-        form = CollegeForm(collegeinfo[0][0],collegeinfo[0][1])
+        form = CollegeForm(collegeinfo[0][0], collegeinfo[0][1])
         oldcodec = collegeinfo[0][0]
         print(collegeinfo[0][1], "collegeeditform")
         print(collegeinfo, "collegeinfo")
     else:
         form = CollegeForm()
+        print(form, "Form Els col")
 
     cold = oldcodec
 
