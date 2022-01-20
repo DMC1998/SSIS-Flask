@@ -19,10 +19,13 @@ background-image:url({{url_for('static',filename='image/msuiitccs.png')}})
 </style>
 {% endblock %}
 {% block content %}
-   <h1>SSIS</h1>
-<a href="/viewstudents"> <button style="borderline: None;"> <h4> Click here to View Students</h4></button> </a>
-<a href="/viewcourses"> <button style="borderline: None;"> <h4> Click here to View Courses</h4></button> </a>
-<a href="/viewcolleges"> <button style="borderline: None;"> <h4> Click here to View Colleges</h4></button> </a>
+<div class="topnav" style="opacity: 1;">
+<a href="/viewstudents"> <button style="borderline: None; color: black;"> <h5> Click here to View Students</h5></button> </a>
+<a href="/viewcourses"> <button style="borderline: None; color: black;"> <h5> Click here to View Courses</h5></button> </a>
+<a href="/viewcolleges"> <button style="borderline: None; color: black;"> <h5> Click here to View Colleges</h5></button> </a>
+</div>
+
+<h1 style="opacity:1; color: black; font-size: 650%; background-color:white;"> Simple Student Information System</h1>
 {%- endblock %}
 
 {% block scripts%}
